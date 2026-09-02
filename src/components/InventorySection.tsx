@@ -128,6 +128,15 @@ export function InventorySection() {
 
         <div className="inv-toolbar">
           <div className="inv-filters">
+            <label className="field field-search">
+              <span>খুঁজুন</span>
+              <input
+                type="search"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="ব্র্যান্ড, মডেল, ইঞ্জিন..."
+              />
+            </label>
             <label className="field">
               <span>ব্র্যান্ড</span>
               <select value={brand} onChange={(e) => setBrand(e.target.value)}>
