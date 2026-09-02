@@ -101,9 +101,18 @@ export function InventorySection() {
     [bikes],
   );
 
+  const query = q.trim().toLowerCase();
   const visible = bikes
     .filter((b) => (brand === "all" ? true : b.brand === brand))
     .filter((b) => (status === "all" ? true : b.status === status))
+    .filter((b) =>
+      query === ""
+        ? true
+        : [b.brand, b.model, b.year, b.engine, b.color, b.condition, b.description]
+            .join(" ")
+            .toLowerCase()
+            .includes(query),
+    )
     .sort((a, b) => Number(b.featured) - Number(a.featured));
 
   return (
