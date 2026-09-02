@@ -62,9 +62,21 @@ function BikeCard({ bike }: { bike: Bike }) {
           </li>
         </ul>
         {bike.description ? <p className="bn bike-desc">{bike.description}</p> : null}
-        <a className="call-btn bike-cta" href="tel:01308224400">
-          এই বাইকটি নিয়ে কথা বলুন
-        </a>
+        <div className="bike-actions">
+          <a className="call-btn bike-cta" href="tel:01308224400">
+            কল করুন
+          </a>
+          <a
+            className="wa-btn bike-cta bn"
+            href={`https://wa.me/${(bike.whatsapp || "8801308224400").replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+              `আসসালামু আলাইকুম, ${bike.brand} ${bike.model} বাইকটি সম্পর্কে জানতে চাই।`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            হোয়াটসঅ্যাপ
+          </a>
+        </div>
       </div>
     </article>
   );
