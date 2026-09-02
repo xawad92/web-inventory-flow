@@ -93,6 +93,7 @@ export function InventorySection() {
 
   const [brand, setBrand] = useState("all");
   const [status, setStatus] = useState("all");
+  const [q, setQ] = useState("");
 
   const bikes = data?.bikes ?? [];
   const brands = useMemo(
