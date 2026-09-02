@@ -380,6 +380,10 @@
 }
 @media (max-width: 720px) {
   .inv-grid { grid-template-columns: 1fr; }
+  .inv-toolbar { flex-direction: column; align-items: stretch; }
+  .inv-filters { flex-direction: column; }
+  .inv-filters select, .inv-filters input[type="search"] { min-width: 0; width: 100%; }
+  .btn-refresh { width: 100%; }
   .tm-nav-links { position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: var(--bg); flex-direction: column; align-items: flex-start; gap: 0; padding: 20px 24px; transform: translateX(100%); transition: transform .3s ease; border-top: 1px solid var(--border); }
   .tm-nav-links.open { transform: translateX(0); }
   .tm-nav-links li { width: 100%; border-bottom: 1px solid var(--border); }
