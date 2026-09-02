@@ -62,9 +62,21 @@ function BikeCard({ bike }: { bike: Bike }) {
           </li>
         </ul>
         {bike.description ? <p className="bn bike-desc">{bike.description}</p> : null}
-        <a className="call-btn bike-cta" href="tel:01308224400">
-          এই বাইকটি নিয়ে কথা বলুন
-        </a>
+        <div className="bike-actions">
+          <a className="call-btn bike-cta" href="tel:01308224400">
+            কল করুন
+          </a>
+          <a
+            className="wa-btn bike-cta bn"
+            href={`https://wa.me/${(bike.whatsapp || "8801308224400").replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+              `আসসালামু আলাইকুম, ${bike.brand} ${bike.model} বাইকটি সম্পর্কে জানতে চাই।`,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            হোয়াটসঅ্যাপ
+          </a>
+        </div>
       </div>
     </article>
   );
@@ -81,6 +93,7 @@ export function InventorySection() {
 
   const [brand, setBrand] = useState("all");
   const [status, setStatus] = useState("all");
+  const [q, setQ] = useState("");
 
   const bikes = data?.bikes ?? [];
   const brands = useMemo(
@@ -88,9 +101,18 @@ export function InventorySection() {
     [bikes],
   );
 
+  const query = q.trim().toLowerCase();
   const visible = bikes
     .filter((b) => (brand === "all" ? true : b.brand === brand))
     .filter((b) => (status === "all" ? true : b.status === status))
+    .filter((b) =>
+      query === ""
+        ? true
+        : [b.brand, b.model, b.year, b.engine, b.color, b.condition, b.description]
+            .join(" ")
+            .toLowerCase()
+            .includes(query),
+    )
     .sort((a, b) => Number(b.featured) - Number(a.featured));
 
   return (
@@ -106,6 +128,15 @@ export function InventorySection() {
 
         <div className="inv-toolbar">
           <div className="inv-filters">
+            <label className="field field-search">
+              <span>খুঁজুন</span>
+              <input
+                type="search"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="ব্র্যান্ড, মডেল, ইঞ্জিন..."
+              />
+            </label>
             <label className="field">
               <span>ব্র্যান্ড</span>
               <select value={brand} onChange={(e) => setBrand(e.target.value)}>
