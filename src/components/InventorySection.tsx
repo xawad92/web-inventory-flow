@@ -168,8 +168,10 @@ export function InventorySection() {
   const { data, isPending, isError, error, refetch, isFetching } = useQuery({
     queryKey: ["inventory"],
     queryFn: () => fetchInventory(),
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
     staleTime: 60_000,
+    retry: 1,
+    retryDelay: 3_000,
   });
 
   const [lightbox, setLightbox] = useState<{ bike: Bike; index: number } | null>(null);

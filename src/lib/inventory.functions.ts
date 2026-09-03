@@ -125,6 +125,8 @@ export const getInventory = createServerFn({ method: "GET" }).handler(
         };
       });
 
-    return { bikes, fetchedAt: new Date().toISOString() };
+    const result: InventoryResult = { bikes, fetchedAt: new Date().toISOString() };
+    cache = { data: result, at: Date.now() };
+    return result;
   },
 );
