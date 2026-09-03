@@ -62,6 +62,14 @@ export const getInventory = createServerFn({ method: "GET" }).handler(
     if (!res.ok) {
       const body = await res.text();
       console.error(`Sheets request failed [${res.status}]: ${body}`);
+      // Rate limit / upstream hiccup: serve the last known inventory instead of
+      // failing the page. Only a genuine config/permission error surfaces.
+      if (cache && (res.status === 429 || res.status >= 500)) {
+        return { ...cache.data, stale: true };
+      }
+      if (res.status === 429) {
+        return { bikes: [], fetchedAt: new Date().toISOString(), stale: true };
+      }
       throw new Error(`Sheets request failed [${res.status}]: ${body}`);
     }
 
