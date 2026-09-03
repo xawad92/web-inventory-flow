@@ -266,10 +266,22 @@ export function InventorySection() {
         ) : (
           <div className="inv-grid">
             {visible.map((bike) => (
-              <BikeCard key={bike.bike_id} bike={bike} />
+              <BikeCard
+                key={bike.bike_id}
+                bike={bike}
+                onOpen={(b, i) => setLightbox({ bike: b, index: i })}
+              />
             ))}
           </div>
         )}
+        {lightbox ? (
+          <Lightbox
+            bike={lightbox.bike}
+            index={lightbox.index}
+            onClose={() => setLightbox(null)}
+            onNav={(i) => setLightbox((s) => (s ? { ...s, index: i } : s))}
+          />
+        ) : null}
       </div>
     </section>
   );
