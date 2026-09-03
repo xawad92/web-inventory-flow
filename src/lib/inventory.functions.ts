@@ -40,7 +40,7 @@ export const getInventory = createServerFn({ method: "GET" }).handler(
 
     const url = new URL(`${GATEWAY}/spreadsheets/${SPREADSHEET_ID}/values:batchGet`);
     url.searchParams.append("ranges", "Inventory!A1:R500");
-    url.searchParams.append("ranges", "Photos!A1:F500");
+    url.searchParams.append("ranges", "Photos!A1:Z500");
     url.searchParams.set("valueRenderOption", "UNFORMATTED_VALUE");
 
     const res = await fetch(url, {
