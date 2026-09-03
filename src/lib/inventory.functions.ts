@@ -30,8 +30,17 @@ function toNumber(value: unknown): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
+type InventoryResult = { bikes: Bike[]; fetchedAt: string; stale?: boolean };
+
+// Sheets enforces a per-minute read quota, so cache the last good response and
+// reuse it both for fresh calls within the TTL and as a fallback on 429/5xx.
+const CACHE_TTL_MS = 60_000;
+let cache: { data: InventoryResult; at: number } | undefined;
+
 export const getInventory = createServerFn({ method: "GET" }).handler(
-  async (): Promise<{ bikes: Bike[]; fetchedAt: string }> => {
+  async (): Promise<InventoryResult> => {
+    if (cache && Date.now() - cache.at < CACHE_TTL_MS) return cache.data;
+
     const lovableKey = process.env["LOVABLE_API_KEY"];
     const connectionKey = process.env["GOOGLE_SHEETS_API_KEY"];
     if (!lovableKey || !connectionKey) {
