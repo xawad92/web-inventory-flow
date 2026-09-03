@@ -281,6 +281,22 @@
 .bike-status.status-sold { color: #f87171; }
 .bike-featured { position: absolute; top: 14px; right: 14px; font-size: .74rem; font-weight: 600; padding: 6px 12px; border-radius: 980px; background: var(--red); color: #fff; }
 .bike-card.status-sold .bike-media img { filter: grayscale(1) brightness(.7); }
+.bike-media.clickable { cursor: zoom-in; }
+.bike-media.clickable:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+.bike-gallery-hint { position: absolute; bottom: 14px; right: 14px; font-size: .76rem; font-weight: 600; padding: 6px 12px; border-radius: 980px; background: rgba(10,10,10,.75); backdrop-filter: blur(8px); color: #fff; }
+
+/* Image lightbox */
+.lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(5,5,5,.92); display: flex; align-items: center; justify-content: center; padding: 24px; animation: lightbox-in .2s ease; }
+@keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
+.lightbox-stage { position: relative; margin: 0; max-width: 960px; width: 100%; }
+.lightbox-stage img { width: 100%; max-height: 78vh; object-fit: contain; border-radius: 12px; }
+.lightbox-stage figcaption { margin-top: 14px; text-align: center; color: var(--text-muted); font-size: .95rem; }
+.lightbox-close { position: absolute; top: 18px; right: 18px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: rgba(20,20,20,.8); color: #fff; font-size: 1.1rem; cursor: pointer; }
+.lightbox-close:hover { background: var(--red); }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); background: rgba(20,20,20,.8); color: #fff; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.lightbox-nav:hover { background: var(--red); }
+.lightbox-nav.prev { left: 10px; }
+.lightbox-nav.next { right: 10px; }
 .bike-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
 .bike-body h3 { font-size: 1.25rem; font-weight: 700; }
 .bike-price { font-family: var(--font-bn); color: var(--red); font-size: 1.3rem; font-weight: 700; }
