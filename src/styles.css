@@ -166,6 +166,7 @@
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+  padding-top: 64px;
 }
 
 html, body { overflow-x: hidden; }
