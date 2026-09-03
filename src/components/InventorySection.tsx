@@ -102,6 +102,67 @@ function BikeCard({ bike, onOpen }: { bike: Bike; onOpen: (bike: Bike, index: nu
   );
 }
 
+function Lightbox({
+  bike,
+  index,
+  onClose,
+  onNav,
+}: {
+  bike: Bike;
+  index: number;
+  onClose: () => void;
+  onNav: (index: number) => void;
+}) {
+  const total = bike.images.length;
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") onNav((index + 1) % total);
+      if (e.key === "ArrowLeft") onNav((index - 1 + total) % total);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [index, total, onClose, onNav]);
+
+  return (
+    <div className="lightbox" role="dialog" aria-modal="true" onClick={onClose}>
+      <button type="button" className="lightbox-close" aria-label="বন্ধ করুন" onClick={onClose}>
+        ✕
+      </button>
+      <figure className="lightbox-stage" onClick={(e) => e.stopPropagation()}>
+        <img src={bike.images[index]} alt={`${bike.brand} ${bike.model} — ছবি ${index + 1}`} />
+        {total > 1 ? (
+          <>
+            <button
+              type="button"
+              className="lightbox-nav prev"
+              aria-label="আগের ছবি"
+              onClick={() => onNav((index - 1 + total) % total)}
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              className="lightbox-nav next"
+              aria-label="পরের ছবি"
+              onClick={() => onNav((index + 1) % total)}
+            >
+              ›
+            </button>
+          </>
+        ) : null}
+        <figcaption className="bn">
+          {bike.brand} {bike.model} · {index + 1}/{total}
+        </figcaption>
+      </figure>
+    </div>
+  );
+}
+
 export function InventorySection() {
   const fetchInventory = useServerFn(getInventory);
   const { data, isPending, isError, error, refetch, isFetching } = useQuery({
@@ -110,6 +171,8 @@ export function InventorySection() {
     refetchOnWindowFocus: true,
     staleTime: 60_000,
   });
+
+  const [lightbox, setLightbox] = useState<{ bike: Bike; index: number } | null>(null);
 
   const [brand, setBrand] = useState("all");
   const [status, setStatus] = useState("all");
