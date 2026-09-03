@@ -166,8 +166,9 @@
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
-  overflow-x: hidden;
 }
+
+html, body { overflow-x: hidden; }
 .tm-root * { box-sizing: border-box; }
 .tm-root a { color: inherit; text-decoration: none; }
 .tm-root .bn { font-family: var(--font-bn); }
