@@ -15,11 +15,28 @@ function formatPrice(price: number | null) {
   return `৳ ${price.toLocaleString("en-BD")}`;
 }
 
-function BikeCard({ bike }: { bike: Bike }) {
+function BikeCard({ bike, onOpen }: { bike: Bike; onOpen: (bike: Bike, index: number) => void }) {
   const statusKey = bike.status.toLowerCase();
+  const hasGallery = bike.images.length > 1;
   return (
     <article className={`bike-card status-${statusKey}`}>
-      <div className="bike-media">
+      <div
+        className={`bike-media${hasGallery ? " clickable" : ""}`}
+        role={hasGallery ? "button" : undefined}
+        tabIndex={hasGallery ? 0 : undefined}
+        aria-label={hasGallery ? `${bike.brand} ${bike.model} — ছবি দেখুন` : undefined}
+        onClick={hasGallery ? () => onOpen(bike, 0) : undefined}
+        onKeyDown={
+          hasGallery
+            ? (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onOpen(bike, 0);
+                }
+              }
+            : undefined
+        }
+      >
         {bike.images[0] ? (
           <img src={bike.images[0]} alt={`${bike.brand} ${bike.model}`} loading="lazy" />
         ) : (
@@ -29,6 +46,9 @@ function BikeCard({ bike }: { bike: Bike }) {
           {STATUS_LABEL[bike.status] ?? bike.status}
         </span>
         {bike.featured ? <span className="bike-featured bn">ফিচার্ড</span> : null}
+        {hasGallery ? (
+          <span className="bike-gallery-hint bn">১/{bike.images.length} ছবি</span>
+        ) : null}
       </div>
       <div className="bike-body">
         <h3>
