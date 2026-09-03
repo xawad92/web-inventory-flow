@@ -30,8 +30,17 @@ function toNumber(value: unknown): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
+type InventoryResult = { bikes: Bike[]; fetchedAt: string; stale?: boolean };
+
+// Sheets enforces a per-minute read quota, so cache the last good response and
+// reuse it both for fresh calls within the TTL and as a fallback on 429/5xx.
+const CACHE_TTL_MS = 60_000;
+let cache: { data: InventoryResult; at: number } | undefined;
+
 export const getInventory = createServerFn({ method: "GET" }).handler(
-  async (): Promise<{ bikes: Bike[]; fetchedAt: string }> => {
+  async (): Promise<InventoryResult> => {
+    if (cache && Date.now() - cache.at < CACHE_TTL_MS) return cache.data;
+
     const lovableKey = process.env["LOVABLE_API_KEY"];
     const connectionKey = process.env["GOOGLE_SHEETS_API_KEY"];
     if (!lovableKey || !connectionKey) {
@@ -53,6 +62,14 @@ export const getInventory = createServerFn({ method: "GET" }).handler(
     if (!res.ok) {
       const body = await res.text();
       console.error(`Sheets request failed [${res.status}]: ${body}`);
+      // Rate limit / upstream hiccup: serve the last known inventory instead of
+      // failing the page. Only a genuine config/permission error surfaces.
+      if (cache && (res.status === 429 || res.status >= 500)) {
+        return { ...cache.data, stale: true };
+      }
+      if (res.status === 429) {
+        return { bikes: [], fetchedAt: new Date().toISOString(), stale: true };
+      }
       throw new Error(`Sheets request failed [${res.status}]: ${body}`);
     }
 
@@ -108,6 +125,8 @@ export const getInventory = createServerFn({ method: "GET" }).handler(
         };
       });
 
-    return { bikes, fetchedAt: new Date().toISOString() };
+    const result: InventoryResult = { bikes, fetchedAt: new Date().toISOString() };
+    cache = { data: result, at: Date.now() };
+    return result;
   },
 );
