@@ -163,6 +163,11 @@ function Lightbox({
   );
 }
 
+function isNewBike(bike: Bike) {
+  const c = `${bike.condition ?? ""}`.toLowerCase();
+  return c.includes("new") || c.includes("নতুন") || c.includes("brand");
+}
+
 export function InventorySection() {
   const fetchInventory = useServerFn(getInventory);
   const { data, isPending, isError, error, refetch, isFetching } = useQuery({
@@ -176,20 +181,38 @@ export function InventorySection() {
 
   const [lightbox, setLightbox] = useState<{ bike: Bike; index: number } | null>(null);
 
-  const [brand, setBrand] = useState("all");
+  const [tab, setTab] = useState<"all" | "new" | "used">("all");
+  const [brands, setBrands] = useState<string[]>([]);
   const [status, setStatus] = useState("all");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const [q, setQ] = useState("");
+  const [sort, setSort] = useState("featured");
+
+  useEffect(() => {
+    const onFilter = (e: Event) => {
+      const detail = (e as CustomEvent).detail as "all" | "new" | "used";
+      if (detail === "all" || detail === "new" || detail === "used") setTab(detail);
+    };
+    window.addEventListener("tm-stock-filter", onFilter);
+    return () => window.removeEventListener("tm-stock-filter", onFilter);
+  }, []);
 
   const bikes = data?.bikes ?? [];
-  const brands = useMemo(
+  const brandOptions = useMemo(
     () => Array.from(new Set(bikes.map((b) => b.brand).filter(Boolean))).sort(),
     [bikes],
   );
 
   const query = q.trim().toLowerCase();
+  const min = Number(minPrice.replace(/[^0-9]/g, "")) || 0;
+  const max = Number(maxPrice.replace(/[^0-9]/g, "")) || Infinity;
+
   const visible = bikes
-    .filter((b) => (brand === "all" ? true : b.brand === brand))
+    .filter((b) => (tab === "all" ? true : tab === "new" ? isNewBike(b) : !isNewBike(b)))
+    .filter((b) => (brands.length === 0 ? true : brands.includes(b.brand)))
     .filter((b) => (status === "all" ? true : b.status === status))
+    .filter((b) => (b.price === null ? min === 0 : b.price >= min && b.price <= max))
     .filter((b) =>
       query === ""
         ? true
@@ -198,21 +221,65 @@ export function InventorySection() {
             .toLowerCase()
             .includes(query),
     )
-    .sort((a, b) => Number(b.featured) - Number(a.featured));
+    .sort((a, b) => {
+      if (sort === "price-asc") return (a.price ?? Infinity) - (b.price ?? Infinity);
+      if (sort === "price-desc") return (b.price ?? -1) - (a.price ?? -1);
+      if (sort === "year-desc") return Number(b.year || 0) - Number(a.year || 0);
+      return Number(b.featured) - Number(a.featured);
+    });
+
+  const toggleBrand = (brand: string) =>
+    setBrands((list) => (list.includes(brand) ? list.filter((b) => b !== brand) : [...list, brand]));
+
+  const resetAll = () => {
+    setBrands([]);
+    setStatus("all");
+    setMinPrice("");
+    setMaxPrice("");
+    setQ("");
+    setTab("all");
+    setSort("featured");
+  };
 
   return (
     <section className="tm-section" id="inventory">
       <div className="tm-wrap">
         <div className="section-head reveal in">
-          <div className="kicker bn">লাইভ স্টক</div>
+          <div className="kicker bn">আমাদের কালেকশন</div>
           <h2>এখন যেসব বাইক আমাদের শোরুমে আছে।</h2>
           <p className="bn">
             আমাদের ইনভেন্টরি শিট থেকে সরাসরি আপডেট হয় — নতুন বাইক যোগ করলেই এখানে দেখা যাবে।
           </p>
         </div>
 
-        <div className="inv-toolbar">
-          <div className="inv-filters">
+        <div className="inv-tabs" role="tablist" aria-label="বাইকের ধরন">
+          {[
+            { key: "all", label: "সব বাইক" },
+            { key: "new", label: "নতুন বাইক" },
+            { key: "used", label: "ইউজড বাইক" },
+          ].map((t) => (
+            <button
+              key={t.key}
+              type="button"
+              role="tab"
+              aria-selected={tab === t.key}
+              className={`inv-tab bn${tab === t.key ? " active" : ""}`}
+              onClick={() => setTab(t.key as typeof tab)}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="inv-layout">
+          <aside className="inv-sidebar" aria-label="ফিল্টার">
+            <div className="inv-side-head">
+              <h3 className="bn">ফিল্টার</h3>
+              <button type="button" className="inv-reset bn" onClick={resetAll}>
+                রিসেট
+              </button>
+            </div>
+
             <label className="field field-search">
               <span>খুঁজুন</span>
               <input
@@ -222,60 +289,107 @@ export function InventorySection() {
                 placeholder="ব্র্যান্ড, মডেল, ইঞ্জিন..."
               />
             </label>
-            <label className="field">
-              <span>ব্র্যান্ড</span>
-              <select value={brand} onChange={(e) => setBrand(e.target.value)}>
-                <option value="all">সব ব্র্যান্ড</option>
-                {brands.map((b) => (
-                  <option key={b} value={b}>
-                    {b}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="field">
-              <span>স্টক অবস্থা</span>
+
+            <div className="inv-filter-group">
+              <h4 className="bn">ব্র্যান্ড</h4>
+              <div className="inv-checks">
+                {brandOptions.length === 0 ? (
+                  <p className="inv-side-empty bn">লোড হচ্ছে...</p>
+                ) : (
+                  brandOptions.map((b) => (
+                    <label key={b} className="inv-check">
+                      <input
+                        type="checkbox"
+                        checked={brands.includes(b)}
+                        onChange={() => toggleBrand(b)}
+                      />
+                      <span>{b}</span>
+                    </label>
+                  ))
+                )}
+              </div>
+            </div>
+
+            <div className="inv-filter-group">
+              <h4 className="bn">মূল্য পরিসীমা (৳)</h4>
+              <div className="inv-price-row">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
+                  placeholder="সর্বনিম্ন"
+                />
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  placeholder="সর্বোচ্চ"
+                />
+              </div>
+            </div>
+
+            <div className="inv-filter-group">
+              <h4 className="bn">স্টক অবস্থা</h4>
               <select value={status} onChange={(e) => setStatus(e.target.value)}>
                 <option value="all">সবগুলো</option>
                 <option value="Available">স্টকে আছে</option>
                 <option value="Reserved">বুকিং হয়েছে</option>
                 <option value="Sold">বিক্রি হয়ে গেছে</option>
               </select>
-            </label>
+            </div>
+
+            <button
+              type="button"
+              className="btn-refresh bn"
+              onClick={() => void refetch()}
+              disabled={isFetching}
+            >
+              {isFetching ? "আপডেট হচ্ছে..." : "স্টক রিফ্রেশ করুন"}
+            </button>
+          </aside>
+
+          <div className="inv-main">
+            <div className="inv-resultbar">
+              <span className="bn">{visible.length} টি বাইক পাওয়া গেছে</span>
+              <label className="field">
+                <span>সাজান</span>
+                <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                  <option value="featured">ফিচার্ড আগে</option>
+                  <option value="price-asc">দাম: কম থেকে বেশি</option>
+                  <option value="price-desc">দাম: বেশি থেকে কম</option>
+                  <option value="year-desc">নতুন মডেল আগে</option>
+                </select>
+              </label>
+            </div>
+
+            {isPending ? (
+              <div className="inv-grid">
+                {[0, 1, 2].map((i) => (
+                  <div key={i} className="bike-card skeleton" />
+                ))}
+              </div>
+            ) : isError ? (
+              <p className="inv-empty bn">
+                স্টক লোড করা যাচ্ছে না: {error instanceof Error ? error.message : "অজানা সমস্যা"}
+              </p>
+            ) : visible.length === 0 ? (
+              <p className="inv-empty bn">এই ফিল্টারে কোনো বাইক পাওয়া যায়নি।</p>
+            ) : (
+              <div className="inv-grid">
+                {visible.map((bike) => (
+                  <BikeCard
+                    key={bike.bike_id}
+                    bike={bike}
+                    onOpen={(b, i) => setLightbox({ bike: b, index: i })}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-          <button
-            type="button"
-            className="btn-refresh bn"
-            onClick={() => void refetch()}
-            disabled={isFetching}
-          >
-            {isFetching ? "আপডেট হচ্ছে..." : "স্টক রিফ্রেশ করুন"}
-          </button>
         </div>
 
-        {isPending ? (
-          <div className="inv-grid">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="bike-card skeleton" />
-            ))}
-          </div>
-        ) : isError ? (
-          <p className="inv-empty bn">
-            স্টক লোড করা যাচ্ছে না: {error instanceof Error ? error.message : "অজানা সমস্যা"}
-          </p>
-        ) : visible.length === 0 ? (
-          <p className="inv-empty bn">এই ফিল্টারে কোনো বাইক পাওয়া যায়নি।</p>
-        ) : (
-          <div className="inv-grid">
-            {visible.map((bike) => (
-              <BikeCard
-                key={bike.bike_id}
-                bike={bike}
-                onOpen={(b, i) => setLightbox({ bike: b, index: i })}
-              />
-            ))}
-          </div>
-        )}
         {lightbox ? (
           <Lightbox
             bike={lightbox.bike}

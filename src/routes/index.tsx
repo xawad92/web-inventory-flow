@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import { InventorySection } from "@/components/InventorySection";
+import { SellNowSection } from "@/components/SellNowSection";
 
 const TITLE = "টর্ক Moto — বাংলাদেশের প্রিমিয়াম ব্যবহৃত মোটরসাইকেল";
 const DESCRIPTION =
@@ -54,6 +55,7 @@ function useShrinkNav() {
 const NAV_LINKS = [
   { href: "#top", label: "হোম" },
   { href: "#inventory", label: "স্টক" },
+  { href: "#sell", label: "বাইক বিক্রি" },
   { href: "#services", label: "সার্ভিস" },
   { href: "#about", label: "আমাদের সম্পর্কে" },
   { href: "#testimonials", label: "রিভিউ" },
@@ -193,13 +195,42 @@ function Index() {
             <span className="logo-moto">মোটো</span>
           </a>
           <ul className={`tm-nav-links${menuOpen ? " open" : ""}`}>
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} onClick={() => setMenuOpen(false)}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) =>
+              link.href === "#inventory" ? (
+                <li key={link.href} className="has-sub">
+                  <a href={link.href} onClick={() => setMenuOpen(false)}>
+                    {link.label} <span aria-hidden="true">▾</span>
+                  </a>
+                  <ul className="tm-subnav">
+                    {[
+                      { key: "all", label: "সব বাইক" },
+                      { key: "new", label: "নতুন বাইক" },
+                      { key: "used", label: "ইউজড বাইক" },
+                    ].map((item) => (
+                      <li key={item.key}>
+                        <a
+                          href="#inventory"
+                          onClick={() => {
+                            setMenuOpen(false);
+                            window.dispatchEvent(
+                              new CustomEvent("tm-stock-filter", { detail: item.key }),
+                            );
+                          }}
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ) : (
+                <li key={link.href}>
+                  <a href={link.href} onClick={() => setMenuOpen(false)}>
+                    {link.label}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
           <div className="tm-nav-cta">
             <a href="tel:01308224400" className="call-btn">
@@ -299,6 +330,8 @@ function Index() {
         </div>
 
         <InventorySection />
+
+        <SellNowSection />
 
         <section className="tm-section" id="services" style={{ background: "var(--bg-alt)" }}>
           <div className="tm-wrap">
