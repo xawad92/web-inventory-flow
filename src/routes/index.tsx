@@ -193,13 +193,42 @@ function Index() {
             <span className="logo-moto">মোটো</span>
           </a>
           <ul className={`tm-nav-links${menuOpen ? " open" : ""}`}>
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} onClick={() => setMenuOpen(false)}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) =>
+              link.href === "#inventory" ? (
+                <li key={link.href} className="has-sub">
+                  <a href={link.href} onClick={() => setMenuOpen(false)}>
+                    {link.label} <span aria-hidden="true">▾</span>
+                  </a>
+                  <ul className="tm-subnav">
+                    {[
+                      { key: "all", label: "সব বাইক" },
+                      { key: "new", label: "নতুন বাইক" },
+                      { key: "used", label: "ইউজড বাইক" },
+                    ].map((item) => (
+                      <li key={item.key}>
+                        <a
+                          href="#inventory"
+                          onClick={() => {
+                            setMenuOpen(false);
+                            window.dispatchEvent(
+                              new CustomEvent("tm-stock-filter", { detail: item.key }),
+                            );
+                          }}
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ) : (
+                <li key={link.href}>
+                  <a href={link.href} onClick={() => setMenuOpen(false)}>
+                    {link.label}
+                  </a>
+                </li>
+              ),
+            )}
           </ul>
           <div className="tm-nav-cta">
             <a href="tel:01308224400" className="call-btn">
