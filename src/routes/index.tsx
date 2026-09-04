@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 import { InventorySection } from "@/components/InventorySection";
+import { SellNowSection } from "@/components/SellNowSection";
 
 const TITLE = "টর্ক Moto — বাংলাদেশের প্রিমিয়াম ব্যবহৃত মোটরসাইকেল";
 const DESCRIPTION =
