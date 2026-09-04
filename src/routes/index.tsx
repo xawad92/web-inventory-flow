@@ -56,7 +56,6 @@ const NAV_LINKS = [
   { href: "#top", label: "হোম" },
   { href: "#inventory", label: "স্টক" },
   { href: "#sell", label: "বাইক বিক্রি" },
-  { href: "#services", label: "সার্ভিস" },
   { href: "#about", label: "আমাদের সম্পর্কে" },
   { href: "#testimonials", label: "রিভিউ" },
   { href: "#contact", label: "যোগাযোগ" },
