@@ -330,6 +330,8 @@ function Index() {
 
         <InventorySection />
 
+        <SellNowSection />
+
         <section className="tm-section" id="services" style={{ background: "var(--bg-alt)" }}>
           <div className="tm-wrap">
             <div className="section-head reveal">
