@@ -450,6 +450,20 @@ function Index() {
                     <span className="bn">৩৭৬K ফলোয়ার্স • পাবলিক গ্রুপ ৬৪৩ সদস্য</span>
                   </div>
                 </div>
+                <div className="info-row">
+                  <div className="ico">📍</div>
+                  <div>
+                    <b>ঠিকানা</b>
+                    <a
+                      href="https://maps.app.goo.gl/JxrVAVdD9AHx4NXP9?g_st=ic"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="address-link bn"
+                    >
+                      Mirpur-1 block-D, Road-5 - House-2, Dhaka, Bangladesh, 1216
+                    </a>
+                  </div>
+                </div>
                 <div className="info-row last">
                   <div className="ico">⏱</div>
                   <div>
