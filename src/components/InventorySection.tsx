@@ -399,7 +399,22 @@ export function InventorySection() {
                 স্টক লোড করা যাচ্ছে না: {error instanceof Error ? error.message : "অজানা সমস্যা"}
               </p>
             ) : visible.length === 0 ? (
-              <p className="inv-empty bn">এই ফিল্টারে কোনো বাইক পাওয়া যায়নি।</p>
+              <div className="inv-emptybox bn">
+                <div className="empty-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M20 20l-3.5-3.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <h4>এই ফিল্টারে কোনো বাইক পাওয়া যায়নি</h4>
+                <p>
+                  ফিল্টার একটু কম করে আবার দেখুন, অথবা সব বাইক দেখতে নিচের বাটনে ক্লিক করুন। নতুন
+                  স্টক নিয়মিত যোগ হচ্ছে।
+                </p>
+                <button type="button" className="empty-reset" onClick={resetAll}>
+                  সব বাইক দেখুন
+                </button>
+              </div>
             ) : (
               <div className="inv-grid">
                 {visible.map((bike) => (
