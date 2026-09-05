@@ -10,6 +10,30 @@ const STATUS_LABEL: Record<string, string> = {
   Sold: "বিক্রি হয়ে গেছে",
 };
 
+const SPEC_LABEL: Record<string, string> = {
+  new: "নতুন",
+  "brand new": "একদম নতুন",
+  used: "ইউজড",
+  excellent: "চমৎকার",
+  good: "ভালো",
+  fair: "মধ্যম",
+  registered: "রেজিস্টার্ড",
+  unregistered: "আনরেজিস্টার্ড",
+  papers: "কাগজপত্র সহ",
+  "1st owner": "১ম মালিক",
+  "first owner": "১ম মালিক",
+  "2nd owner": "২য় মালিক",
+  "second owner": "২য় মালিক",
+  "3rd owner": "৩য় মালিক",
+  fresh: "ফ্রেশ",
+  dhaka: "ঢাকা",
+};
+
+function bn(value: string | null | undefined) {
+  if (!value) return "—";
+  return SPEC_LABEL[value.trim().toLowerCase()] ?? value;
+}
+
 function formatPrice(price: number | null) {
   if (price === null) return "মূল্য জানতে কল করুন";
   return `৳ ${price.toLocaleString("en-BD")}`;
@@ -70,15 +94,15 @@ function BikeCard({ bike, onOpen }: { bike: Bike; onOpen: (bike: Bike, index: nu
           </li>
           <li>
             <span>রেজিস্ট্রেশন</span>
-            <b>{bike.registration || "—"}</b>
+            <b>{bn(bike.registration)}</b>
           </li>
           <li>
             <span>কন্ডিশন</span>
-            <b>{bike.condition || "—"}</b>
+            <b>{bn(bike.condition)}</b>
           </li>
           <li>
             <span>ওনারশিপ</span>
-            <b>{bike.ownership || "—"}</b>
+            <b>{bn(bike.ownership)}</b>
           </li>
         </ul>
         {bike.description ? <p className="bn bike-desc">{bike.description}</p> : null}
@@ -375,7 +399,22 @@ export function InventorySection() {
                 স্টক লোড করা যাচ্ছে না: {error instanceof Error ? error.message : "অজানা সমস্যা"}
               </p>
             ) : visible.length === 0 ? (
-              <p className="inv-empty bn">এই ফিল্টারে কোনো বাইক পাওয়া যায়নি।</p>
+              <div className="inv-emptybox bn">
+                <div className="empty-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="M20 20l-3.5-3.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <h4>এই ফিল্টারে কোনো বাইক পাওয়া যায়নি</h4>
+                <p>
+                  ফিল্টার একটু কম করে আবার দেখুন, অথবা সব বাইক দেখতে নিচের বাটনে ক্লিক করুন। নতুন
+                  স্টক নিয়মিত যোগ হচ্ছে।
+                </p>
+                <button type="button" className="empty-reset" onClick={resetAll}>
+                  সব বাইক দেখুন
+                </button>
+              </div>
             ) : (
               <div className="inv-grid">
                 {visible.map((bike) => (

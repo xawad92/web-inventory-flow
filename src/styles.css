@@ -206,11 +206,15 @@ html, body { overflow-x: hidden; }
 .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .tm-hero { background: var(--black); color: #fff; padding: 160px 0 100px; text-align: center; position: relative; overflow: hidden; }
-.tm-hero::before {
-  content: ''; position: absolute; top: -20%; left: 50%; width: 140%; height: 70%; transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(208,16,42,0.18) 0%, transparent 70%); pointer-events: none;
+.hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; opacity: 0.5; }
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(208,16,42,0.22) 0%, transparent 65%),
+    linear-gradient(to bottom, rgba(10,10,10,0.86) 0%, rgba(10,10,10,0.62) 45%, rgba(10,10,10,0.97) 100%);
 }
-.hero-inner { position: relative; max-width: 840px; margin: 0 auto; padding: 0 24px; }
+.hero-inner { position: relative; z-index: 1; max-width: 840px; margin: 0 auto; padding: 0 24px; }
 .hero-eyebrow { color: var(--red); font-weight: 600; font-size: 1rem; margin-bottom: 20px; }
 .tm-hero h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); font-weight: 700; line-height: 1.04; margin-bottom: 24px; color: #fff; }
 .tm-hero h1 em { font-style: normal; color: var(--red); }
@@ -270,6 +274,21 @@ html, body { overflow-x: hidden; }
 
 .inv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .inv-empty { text-align: center; color: var(--text-muted); padding: 48px 0; }
+.inv-emptybox { text-align: center; padding: 56px 24px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; }
+.inv-emptybox .empty-ico { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; background: var(--bg-alt); color: var(--red); display: flex; align-items: center; justify-content: center; }
+.inv-emptybox .empty-ico svg { width: 26px; height: 26px; }
+.inv-emptybox h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+.inv-emptybox p { color: var(--text-muted); font-size: 0.95rem; max-width: 40ch; margin: 0 auto 20px; }
+.inv-emptybox .empty-reset { font-family: var(--font-display); background: var(--red); color: #fff; border: none; padding: 12px 26px; border-radius: 980px; font-weight: 600; cursor: pointer; transition: background .2s ease; }
+.inv-emptybox .empty-reset:hover { background: var(--red-dark); }
+
+.back-to-top { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border); background: var(--card-bg); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .25s ease, transform .25s ease, visibility .25s ease, border-color .2s ease; box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+.back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { border-color: var(--red); color: var(--red); }
+.back-to-top svg { width: 20px; height: 20px; }
+@media (max-width: 720px) { .back-to-top { right: 16px; bottom: 16px; } }
+
+.info-row .ico svg { width: 18px; height: 18px; }
 .bike-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform .3s ease, box-shadow .3s ease; }
 .bike-card:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(0,0,0,0.35); }
 .bike-card.skeleton { min-height: 420px; animation: pulse 1.4s ease-in-out infinite; }
