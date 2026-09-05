@@ -94,15 +94,15 @@ function BikeCard({ bike, onOpen }: { bike: Bike; onOpen: (bike: Bike, index: nu
           </li>
           <li>
             <span>রেজিস্ট্রেশন</span>
-            <b>{bike.registration || "—"}</b>
+            <b>{bn(bike.registration)}</b>
           </li>
           <li>
             <span>কন্ডিশন</span>
-            <b>{bike.condition || "—"}</b>
+            <b>{bn(bike.condition)}</b>
           </li>
           <li>
             <span>ওনারশিপ</span>
-            <b>{bike.ownership || "—"}</b>
+            <b>{bn(bike.ownership)}</b>
           </li>
         </ul>
         {bike.description ? <p className="bn bike-desc">{bike.description}</p> : null}
