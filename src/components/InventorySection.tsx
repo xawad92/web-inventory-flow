@@ -10,6 +10,30 @@ const STATUS_LABEL: Record<string, string> = {
   Sold: "বিক্রি হয়ে গেছে",
 };
 
+const SPEC_LABEL: Record<string, string> = {
+  new: "নতুন",
+  "brand new": "একদম নতুন",
+  used: "ইউজড",
+  excellent: "চমৎকার",
+  good: "ভালো",
+  fair: "মধ্যম",
+  registered: "রেজিস্টার্ড",
+  unregistered: "আনরেজিস্টার্ড",
+  papers: "কাগজপত্র সহ",
+  "1st owner": "১ম মালিক",
+  "first owner": "১ম মালিক",
+  "2nd owner": "২য় মালিক",
+  "second owner": "২য় মালিক",
+  "3rd owner": "৩য় মালিক",
+  fresh: "ফ্রেশ",
+  dhaka: "ঢাকা",
+};
+
+function bn(value: string | null | undefined) {
+  if (!value) return "—";
+  return SPEC_LABEL[value.trim().toLowerCase()] ?? value;
+}
+
 function formatPrice(price: number | null) {
   if (price === null) return "মূল্য জানতে কল করুন";
   return `৳ ${price.toLocaleString("en-BD")}`;
