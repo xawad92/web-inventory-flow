@@ -356,6 +356,8 @@ html, body { overflow-x: hidden; }
 .info-row .ico { flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-alt); color: var(--red); display: flex; align-items: center; justify-content: center; font-weight: 700; }
 .info-row b { display: block; font-size: 0.95rem; }
 .info-row span { font-size: 0.9rem; color: var(--text-muted); }
+.info-row .address-link { font-size: 0.9rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
+.info-row .address-link:hover { color: var(--red); }
 
 .tm-form { background: var(--card-bg); border: 1px solid var(--border); padding: 40px; border-radius: 24px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
