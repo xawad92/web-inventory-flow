@@ -1,8 +1,81 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
+import heroBike from "@/assets/hero-bike.jpg";
 import { InventorySection } from "@/components/InventorySection";
 import { SellNowSection } from "@/components/SellNowSection";
+
+function Icon({ name }: { name: "phone" | "instagram" | "facebook" | "pin" | "clock" | "arrow-up" }) {
+  const common = {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+  if (name === "phone")
+    return (
+      <svg {...common}>
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z" />
+      </svg>
+    );
+  if (name === "instagram")
+    return (
+      <svg {...common}>
+        <rect x="2" y="2" width="20" height="20" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+      </svg>
+    );
+  if (name === "facebook")
+    return (
+      <svg {...common}>
+        <path d="M15 2h-2.5A4.5 4.5 0 0 0 8 6.5V10H5.5v4H8v8h4v-8h2.5l.5-4H12V6.5A.5.5 0 0 1 12.5 6H15V2Z" />
+      </svg>
+    );
+  if (name === "pin")
+    return (
+      <svg {...common}>
+        <path d="M20 10c0 5.5-8 12-8 12s-8-6.5-8-12a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    );
+  if (name === "clock")
+    return (
+      <svg {...common}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3.5 2" />
+      </svg>
+    );
+  return (
+    <svg {...common}>
+      <path d="M12 19V5" />
+      <path d="M5 12l7-7 7 7" />
+    </svg>
+  );
+}
+
+function BackToTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 600);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <button
+      type="button"
+      className={`back-to-top${show ? " show" : ""}`}
+      aria-label="উপরে ফিরে যান"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    >
+      <Icon name="arrow-up" />
+    </button>
+  );
+}
 
 const TITLE = "টর্ক Moto — বাংলাদেশের প্রিমিয়াম ব্যবহৃত মোটরসাইকেল";
 const DESCRIPTION =
