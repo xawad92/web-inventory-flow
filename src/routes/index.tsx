@@ -632,6 +632,7 @@ function Index() {
           </div>
         </div>
       </footer>
+      <BackToTop />
     </div>
   );
 }
