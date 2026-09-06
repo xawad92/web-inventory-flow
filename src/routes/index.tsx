@@ -597,7 +597,12 @@ function Index() {
                 >
                   <Icon name="facebook" />
                 </a>
-                <a href="https://www.instagram.com/torque_4400" aria-label="ইনস্টাগ্রাম">
+                <a
+                  href="https://www.instagram.com/torque_4400"
+                  aria-label="ইনস্টাগ্রাম"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Icon name="instagram" />
                 </a>
                 <a href="tel:01308224400" aria-label="ফোন করুন">
