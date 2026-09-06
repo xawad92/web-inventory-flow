@@ -581,13 +581,13 @@ function Index() {
                   href="https://www.facebook.com/profile.php?id=61587078313557"
                   aria-label="ফেসবুক"
                 >
-                  f
+                  <Icon name="facebook" />
                 </a>
                 <a href="https://www.instagram.com/torque_4400" aria-label="ইনস্টাগ্রাম">
-                  ig
+                  <Icon name="instagram" />
                 </a>
                 <a href="tel:01308224400" aria-label="ফোন করুন">
-                  ☎
+                  <Icon name="phone" />
                 </a>
               </div>
             </div>
