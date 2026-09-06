@@ -377,6 +377,9 @@ html, body { overflow-x: hidden; }
 .info-row span { font-size: 0.9rem; color: var(--text-muted); }
 .info-row .address-link { font-size: 0.9rem; color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
 .info-row .address-link:hover { color: var(--red); }
+.info-row.social-link { cursor: pointer; transition: color .2s ease; }
+.info-row.social-link:hover { color: var(--text); }
+.info-row.social-link:hover .ico { background: rgba(208, 16, 42, 0.14); }
 
 .tm-form { background: var(--card-bg); border: 1px solid var(--border); padding: 40px; border-radius: 24px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
