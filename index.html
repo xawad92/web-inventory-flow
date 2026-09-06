@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="bn-BD">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>টর্ক Moto — বাংলাদেশের প্রিমিয়াম ব্যবহৃত মোটরসাইকেল</title>
+  <meta name="description" content="সেরা মূল্যে প্রিমিয়াম ব্যবহৃত মোটরসাইকেল কিনুন, বিক্রি করুন অথবা এক্সচেঞ্জ করুন। ৪০+ যাচাইকৃত রিভিউ এবং ১০০% সুপারিশ।">
+  <meta property="og:title" content="টর্ক Moto">
+  <meta property="og:description" content="Bangladesh's premium used bike showroom — buy, sell, exchange.">
+  <meta property="og:image" content="/torque-moto-logo.png">
+  <link rel="canonical" href="https://yourdomain.com/">
+  <style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+  .tm-root{
+    --black:#0a0a0a;
+    --near-black:#151515;
+    --white:#ffffff;
+    --off-white:#f5f5f7;
+    --red:#d0102a;
+    --red-dark:#a80c22;
+    --bg:#ffffff;
+    --bg-alt:#f5f5f7;
+    --text:#0a0a0a;
+    --text-muted:#6e6e73;
+    --border:rgba(0,0,0,0.08);
+    --card-bg:#ffffff;
+    --nav-bg:rgba(255,255,255,0.75);
+    --font-display:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-bn:'Hind Siliguri',sans-serif;
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.5;
+    overflow-x:hidden;
+    transition:background .4s ease, color .4s ease;
+  }
+  .tm-root[data-theme='dark']{
+    --bg:#0a0a0a;
+    --bg-alt:#151515;
+    --text:#f5f5f7;
+    --text-muted:#a1a1a6;
+    --border:rgba(255,255,255,0.12);
+    --card-bg:#1c1c1e;
+    --nav-bg:rgba(10,10,10,0.7);
+  }
+  .tm-root *{box-sizing:border-box;}
+  .tm-root a{color:inherit;text-decoration:none;}
+  .bn{font-family:var(--font-bn);}
+  .tm-wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+  .tm-root h1,.tm-root h2,.tm-root h3{font-family:var(--font-display);letter-spacing:-0.03em;margin:0;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  .logo-mark{display:inline-flex;align-items:baseline;gap:8px;}
+  .logo-torque{
+    font-family:var(--font-display);font-weight:800;font-size:1.5rem;
+    letter-spacing:-0.02em;font-style:italic;
+    background:linear-gradient(115deg,#9a9a9a 0%,#e8e8e8 25%,#ffffff 45%,#8a8a8a 65%,#c9c9c9 85%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    transform:skewX(-6deg);display:inline-block;
+  }
+  .tm-root[data-theme='dark'] .logo-torque{
+    background:linear-gradient(115deg,#7a7a7a 0%,#f0f0f0 25%,#ffffff 45%,#6a6a6a 65%,#b9b9b9 85%);
+    -webkit-background-clip:text;background-clip:text;
+  }
+  .logo-moto{font-family:var(--font-display);font-weight:800;font-size:0.72rem;color:var(--red);letter-spacing:0.06em;}
+
+  .tm-nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);transition:background .4s ease, padding .3s ease;}
+  .tm-nav-inner{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .tm-nav-inner.shrink{padding:10px 24px;}
+  .tm-nav-links{display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0;}
+  .tm-nav-links a{font-size:0.9rem;font-weight:500;color:var(--text-muted);transition:color .2s ease;}
+  .tm-nav-links a:hover{color:var(--text);}
+  .tm-nav-cta{display:flex;align-items:center;gap:14px;}
+  .theme-toggle{
+    width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
+    background:var(--bg-alt);color:var(--text);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:1rem;transition:transform .25s ease, background .2s ease;
+  }
+  .theme-toggle:hover{transform:rotate(20deg);}
+  .call-btn{font-family:var(--font-display);background:var(--red);color:#fff;padding:10px 20px;border-radius:980px;font-size:0.86rem;font-weight:600;transition:background .2s ease, transform .2s ease;display:inline-block;}
+  .call-btn:hover{background:var(--red-dark);transform:translateY(-1px);}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+  .burger span{width:24px;height:2px;background:var(--text);display:block;transition:.25s;}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .tm-hero{background:var(--black);color:#fff;padding:160px 0 100px;text-align:center;position:relative;overflow:hidden;}
+  .tm-hero::before{
+    content:'';position:absolute;top:-20%;left:50%;width:140%;height:70%;transform:translateX(-50%);
+    background:radial-gradient(ellipse at center, rgba(208,16,42,0.18) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative;max-width:840px;margin:0 auto;padding:0 24px;}
+  .hero-eyebrow{font-family:var(--font-bn);color:var(--red);font-weight:600;font-size:1rem;margin-bottom:20px;}
+  .tm-hero h1{font-size:clamp(2.8rem,7vw,5.4rem);font-weight:700;line-height:1.04;margin-bottom:24px;color:#fff;}
+  .tm-hero h1 em{font-style:normal;color:var(--red);}
+  .hero-sub{font-family:var(--font-bn);font-size:1.15rem;color:#c7c7cc;max-width:52ch;margin:0 auto 40px;}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{font-family:var(--font-display);background:var(--red);color:#fff;padding:16px 32px;border-radius:980px;font-weight:600;font-size:1rem;transition:transform .2s ease, background .2s ease;display:inline-block;border:none;cursor:pointer;}
+  .btn-primary:hover{transform:translateY(-2px);background:var(--red-dark);}
+  .btn-ghost{font-family:var(--font-display);border:1.5px solid rgba(255,255,255,0.28);color:#fff;padding:14.5px 30px;border-radius:980px;font-weight:600;font-size:1rem;transition:border-color .2s ease, background .2s ease;display:inline-block;}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+
+  .gauge-wrap{margin:64px auto 0;max-width:380px;}
+  .gauge-wrap svg{width:১০০%;height:auto;}
+  .needle{transform-origin:190px 190px;animation:sweep 2.2s cubic-bezier(.2,.9,.25,1) .3s forwards;opacity:0;animation-fill-mode:forwards;}
+  @keyframes sweep{0%{transform:rotate(-90deg);opacity:1;}১০০%{transform:rotate(48deg);opacity:1;}}
+  @media (prefers-reduced-motion: reduce){.needle{animation:none;transform:rotate(48deg);opacity:1;}}
+
+  .stats-band{background:var(--bg-alt);border-bottom:1px solid var(--border);padding:64px 0;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+  .stat-num{font-family:var(--font-display);font-weight:700;font-size:clamp(2rem,4vw,3rem);color:var(--red);letter-spacing:-0.02em;}
+  .stat-label{font-family:var(--font-bn);font-size:0.88rem;color:var(--text-muted);margin-top:6px;}
+
+  .tm-section{padding:140px 0;}
+  .section-head{max-width:680px;margin:0 auto 72px;text-align:center;}
+  .kicker{font-family:var(--font-bn);color:var(--red);font-weight:600;font-size:0.95rem;margin-bottom:14px;}
+  .section-head h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;}
+  .section-head p{margin-top:18px;color:var(--text-muted);font-family:var(--font-bn);font-size:1.05rem;}
+
+  .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:80px 0;border-bottom:1px solid var(--border);}
+  .feature-row:last-child{border-bottom:none;}
+  .feature-row.reverse{direction:rtl;}
+  .feature-row.reverse > *{direction:ltr;}
+  .feature-num{font-family:var(--font-display);font-weight:700;font-size:0.85rem;color:var(--red);letter-spacing:0.08em;margin-bottom:18px;}
+  .feature-row h3{font-size:clamp(1.6rem,2.6vw,2.4rem);font-weight:700;margin-bottom:18px;line-height:1.15;}
+  .feature-row p{font-family:var(--font-bn);color:var(--text-muted);font-size:1.05rem;max-width:46ch;}
+  .feature-visual{
+    aspect-ratio:4/3;border-radius:24px;background:linear-gradient(135deg,var(--bg-alt),var(--card-bg));
+    border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-weight:700;font-size:5rem;color:var(--border);
+    position:relative;overflow:hidden;
+  }
+  .feature-visual::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%, rgba(208,16,42,0.10), transparent 60%);}
+  .feature-visual span{position:relative;z-index:1;color:var(--red);opacity:0.35;}
+
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:center;}
+  .about-visual{background:var(--black);border-radius:24px;padding:44px;color:#fff;position:relative;overflow:hidden;}
+  .about-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 0%, rgba(208,16,42,0.25), transparent 60%);}
+  .about-visual h3{font-size:1.2rem;color:var(--red);margin-bottom:6px;font-family:var(--font-bn);font-weight:600;position:relative;}
+  .about-visual .big{font-size:3.4rem;font-weight:700;position:relative;}
+  .badge-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap;position:relative;}
+  .about-copy p{font-family:var(--font-bn);color:var(--text-muted);margin-bottom:18px;font-size:1.05rem;}
+  .about-copy h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;margin-bottom:20px;line-height:1.15;}
+  .check-list{list-style:none;margin:24px 0 0;padding:0;}
+  .check-list li{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;font-family:var(--font-bn);color:var(--text);}
+  .check-list li::before{content:'';flex:none;width:8px;height:8px;background:var(--red);margin-top:8px;border-radius:50%;}
+
+  .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .testi-card{background:var(--card-bg);border:1px solid var(--border);padding:36px;border-radius:20px;transition:transform .3s ease, box-shadow .3s ease;}
+  .testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.08);}
+  .stars{color:var(--red);font-size:1rem;margin-bottom:18px;letter-spacing:2px;}
+  .testi-card p{font-family:var(--font-bn);color:var(--text);font-size:1.02rem;margin-bottom:24px;line-height:1.7;}
+  .testi-who{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--black);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+  .testi-who b{display:block;font-size:0.95rem;}
+  .testi-who span{font-size:0.82rem;color:var(--text-muted);}
+
+  .contact-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:64px;}
+  .contact-info h3{font-size:1.4rem;font-weight:700;margin-bottom:20px;}
+  .info-row{display:flex;gap:16px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--border);}
+  .info-row .ico{flex:none;width:40px;height:40px;border-radius:50%;background:var(--bg-alt);color:var(--red);display:flex;align-items:center;justify-content:center;font-weight:700;}
+  .info-row b{display:block;font-size:0.95rem;}
+  .info-row span{font-size:0.9rem;color:var(--text-muted);font-family:var(--font-bn);}
+
+  .tm-form{background:var(--card-bg);border:1px solid var(--border);padding:40px;border-radius:24px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  .tm-form label{font-size:0.85rem;font-weight:600;color:var(--text-muted);}
+  .tm-form input,.tm-form textarea,.tm-form select{
+    font-family:var(--font-body);border:1.5px solid var(--border);background:var(--bg);
+    padding:13px 16px;font-size:0.96rem;border-radius:12px;color:var(--text);width:১০০%;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .tm-form input:focus,.tm-form textarea:focus,.tm-form select:focus{border-color:var(--red);outline:none;box-shadow:0 0 0 4px rgba(208,16,42,0.12);}
+  .tm-form textarea{resize:vertical;min-height:110px;}
+  .submit-btn{font-family:var(--font-display);background:var(--red);color:#fff;border:none;cursor:pointer;padding:15px 32px;border-radius:980px;font-weight:600;font-size:1rem;transition:background .2s ease, transform .2s ease;}
+  .submit-btn:hover{background:var(--red-dark);transform:translateY(-1px);}
+  .form-msg{margin-top:16px;font-family:var(--font-bn);font-size:0.92rem;padding:13px 16px;border-radius:12px;}
+  .form-msg.ok{background:rgba(46,125,50,0.12);color:#2e7d32;}
+  .form-msg.err{background:rgba(208,16,42,0.1);color:var(--red);}
+
+  .tm-footer{background:var(--black);color:#a1a1a6;padding:72px 0 28px;}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px;}
+  .foot-grid p{font-family:var(--font-bn);font-size:0.92rem;line-height:1.7;max-width:32ch;margin-top:16px;}
+  .foot-col h4{color:#fff;font-size:0.9rem;margin-bottom:16px;font-weight:600;}
+  .foot-col ul{list-style:none;margin:0;padding:0;}
+  .foot-col li{margin-bottom:11px;font-size:0.9rem;}
+  .foot-col a:hover{color:var(--red);}
+  .foot-social{display:flex;gap:12px;margin-top:20px;}
+  .foot-social a{width:38px;height:38px;border:1px solid rgba(255,255,255,0.16);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;transition:border-color .2s ease, color .2s ease, background .2s ease;}
+  .foot-social a:hover{border-color:var(--red);background:var(--red);color:#fff;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:0.8rem;}
+
+  @media (max-width:900px){
+    .about-grid,.contact-grid,.feature-row,.feature-row.reverse{grid-template-columns:1fr;direction:ltr;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .testi-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:720px){
+    .tm-nav-links{position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--bg);flex-direction:column;align-items:flex-start;gap:0;padding:20px 24px;transform:translateX(১০০%);transition:transform .3s ease;border-top:1px solid var(--border);}
+    .tm-nav-links.open{transform:translateX(0);}
+    .tm-nav-links li{width:১০০%;border-bottom:1px solid var(--border);}
+    .tm-nav-links a{display:block;padding:16px 0;}
+    .tm-nav-cta .call-btn{display:none;}
+    .burger{display:flex;}
+    .form-row{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;gap:28px;}
+    .tm-section{padding:88px 0;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:32px;}
+  }
+
+
+    /* Permanent dark mode */
+    .tm-root {
+      --bg:#0a0a0a;
+      --bg-alt:#151515;
+      --text:#f5f5f7;
+      --text-muted:#a1a1a6;
+      --border:rgba(255,255,255,0.12);
+      --card-bg:#1c1c1e;
+      --nav-bg:rgba(10,10,10,0.7);
+    }
+
+    /* Vanilla HTML additions */
+    .feature-row.reveal, .section-head.reveal, .about-grid.reveal, .contact-grid.reveal, .testi-card.reveal {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .feature-row.reveal.in, .section-head.reveal.in, .about-grid.reveal.in, .contact-grid.reveal.in, .testi-card.reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+<div class="tm-root" data-theme="dark">
+  <nav class="tm-nav" aria-label="প্রধান নেভিগেশন">
+    <div class="tm-nav-inner">
+      <a href="#top" class="logo-mark" aria-label="টর্ক Moto — home">
+        <span class="logo-torque">টর্ক</span><span class="logo-moto">মোটো</span>
+      </a>
+      <ul class="tm-nav-links">
+        <li><a href="#top">হোম</a></li>
+        <li><a href="#services">সার্ভিস</a></li>
+        <li><a href="#about">আমাদের সম্পর্কে</a></li>
+        <li><a href="#testimonials">রিভিউ</a></li>
+        <li><a href="#contact">যোগাযোগ</a></li>
+      </ul>
+      <div class="tm-nav-cta">
+            <a href="tel:01308224400" class="call-btn">এখনই কল করুন</a>
+        <button class="burger" id="burger" aria-label="মেনু খুলুন বা বন্ধ করুন" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="tm-hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-eyebrow bn">বাংলাদেশের সেরা প্রিমিয়াম ইউজড বাইকের শোরুম</div>
+        <h1>আজই আপনার<br><em>পরবর্তী বাইকটি</em> নিয়ে বাড়ি ফিরুন।</h1>
+        <p class="hero-sub bn">আপনার পছন্দের প্রিমিয়াম ইউজড বাইকটি বেস্ট প্রাইজে কিনুন, বিক্রি করুন অথবা এক্সচেঞ্জ করতে আজই চলে আসুন টর্ক মোটো-তে।</p>
+        <div class="hero-actions">
+          <a href="tel:01308224400" class="btn-primary">এখনই কল করুন</a>
+          <a href="#services" class="btn-ghost">বাইক দেখুন</a>
+        </div>
+        <div class="gauge-wrap" aria-hidden="true">
+          <svg viewBox="0 0 380 230" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 30 190 A 160 160 0 0 1 350 190" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="12" stroke-linecap="round"/>
+            <path d="M 30 190 A 160 160 0 0 1 350 190" fill="none" stroke="#d0102a" stroke-width="12" stroke-linecap="round" stroke-dasharray="340 502"/>
+            <g fill="#a1a1a6" font-family="Inter, sans-serif" font-size="15" font-weight="600">
+              <text x="20" y="210">0</text><text x="150" y="80">টর্ক মোটো</text><text x="350" y="210">100</text>
+            </g>
+            <g class="needle">
+              <line x1="190" y1="190" x2="190" y2="60" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="190" cy="190" r="11" fill="#ffffff"/><circle cx="190" cy="190" r="4" fill="#0a0a0a"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <div class="stats-band">
+      <div class="tm-wrap stats-grid">
+        <div><div class="stat-num" data-target="376" data-suffix="K+">0K+</div><div class="stat-label bn">ফেসবুক ফলোয়ার্স</div></div>
+        <div><div class="stat-num" data-target="100" data-suffix="%">0%</div><div class="stat-label bn">রিকমেন্ডেশন রেট</div></div>
+        <div><div class="stat-num" data-target="40" data-suffix="+">0+</div><div class="stat-label bn">যাচাইকৃত রিভিউ</div></div>
+        <div><div class="stat-num" data-target="643" data-suffix="+">0+</div><div class="stat-label bn">কমিউনিটি মেম্বার</div></div>
+      </div>
+    </div>
+
+    <section class="tm-section" id="services">
+      <div class="tm-wrap">
+        <div class="section-head reveal">
+          <div class="kicker bn">আমরা যা করি</div>
+          <h2>কেনা, বিক্রি বা এক্সচেঞ্জ — সবকিছুই সঠিকভাবে।</h2>
+          <p class="bn">প্রতিটি বাইক যাচাই করা হয় ইঞ্জিন, কাগজপত্র ও কন্ডিশন অনুযায়ী, যাতে আপনি নিশ্চিন্তে সিদ্ধান্ত নিতে পারেন।</p>
+        </div>
+        <div class="feature-row reveal">
+          <div><div class="feature-num">01 — কিনুন</div><h3>প্রিমিয়াম ব্যবহৃত বাইক কিনুন</h3><p class="bn">যাচাইকৃত ইঞ্জিন ও কাগজপত্রসহ সেরা কন্ডিশনের ইউজড বাইক, বেস্ট প্রাইজে।</p></div>
+          <div class="feature-visual"><span>B</span></div>
+        </div>
+        <div class="feature-row reverse reveal">
+          <div><div class="feature-num">02 — বিক্রি করুন</div><h3>দ্রুত আপনার বাইক বিক্রি করুন</h3><p class="bn">আপনার বাইকের সঠিক মূল্যায়ন করে দ্রুত ও নিরাপদে বিক্রি করার সুবিধা।</p></div>
+          <div class="feature-visual"><span>S</span></div>
+        </div>
+        <div class="feature-row reveal">
+          <div><div class="feature-num">03 — এক্সচেঞ্জ করুন</div><h3>সহজে এক্সচেঞ্জ করে আপগ্রেড করুন</h3><p class="bn">পুরনো বাইক দিয়ে নতুন পছন্দের বাইকে সহজে এক্সচেঞ্জ করুন, বাড়তি ঝামেলা ছাড়াই।</p></div>
+          <div class="feature-visual"><span>E</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tm-section" id="about" style="background:var(--bg-alt)">
+      <div class="tm-wrap">
+        <div class="about-grid reveal">
+          <div class="about-visual">
+            <h3>১০০% সন্তুষ্টির হার</h3><div class="big">১০০%</div>
+            <p class="bn" style="color:#a1a1a6;margin-top:8px;font-size:.9rem;position:relative">৪০টি যাচাইকৃত রিভিউর ভিত্তিতে</p>
+            <div class="badge-row">
+              <div><b style="font-family:Inter;font-size:1.3rem;color:#fff;display:block;font-weight:700">৩৭৬K</b><span class="bn" style="font-size:.78rem;color:#a1a1a6">ফলোয়ার</span></div>
+              <div><b style="font-family:Inter;font-size:1.3rem;color:#fff;display:block;font-weight:700">৬৪৩</b><span class="bn" style="font-size:.78rem;color:#a1a1a6">গ্রুপ সদস্য</span></div>
+            </div>
+          </div>
+          <div class="about-copy">
+            <div class="kicker bn">কেন টর্ক Moto</div>
+            <h2>শুধু লেনদেন নয়, বিশ্বাসের ওপর গড়ে ওঠা একটি শোরুম।</h2>
+            <p class="bn">প্রতিটি বাইক আমাদের নিজস্ব চেকলিস্ট অনুযায়ী পরীক্ষা করা হয় — ইঞ্জিন কন্ডিশন, কাগজপত্র, এবং মূল্য যাচাই সবকিছু নিশ্চিত করেই আপনার হাতে তুলে দেওয়া হয়।</p>
+            <ul class="check-list">
+              <li>যাচাইকৃত কাগজপত্র ও ইঞ্জিন কন্ডিশন রিপোর্ট</li>
+              <li>স্বচ্ছ মূল্য নির্ধারণ, কোনো লুকানো চার্জ নেই</li>
+              <li>দ্রুত Buy, Sell এবং Exchange প্রসেস</li>
+              <li>৪০+ গ্রাহকের ১০০% সন্তুষ্টি</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tm-section" id="testimonials">
+      <div class="tm-wrap">
+        <div class="section-head reveal">
+          <div class="kicker bn">গ্রাহকদের মতামত</div><h2>সারা বাংলাদেশের রাইডারদের আস্থার ঠিকানা।</h2>
+        </div>
+        <div class="testi-grid">
+          <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="bn">বাইকের কন্ডিশন এক্সাক্টলি যেমনটা বলা হয়েছিল তেমনই পেয়েছি। কাগজপত্র নিয়ে কোনো ঝামেলা হয়নি।</p><div class="testi-who"><div class="testi-avatar">র</div><div><b>রাকিব হাসান</b><span>যাচাইকৃত ক্রেতা</span></div></div></div>
+          <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="bn">আমার পুরনো বাইকটা এক্সচেঞ্জ করে নতুন বাইক নিলাম, পুরো প্রসেসটা অনেক দ্রুত এবং স্বচ্ছ ছিল।</p><div class="testi-who"><div class="testi-avatar">স</div><div><b>সাদিয়া আক্তার</b><span>এক্সচেঞ্জ গ্রাহক</span></div></div></div>
+          <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="bn">ভালো দামে বাইক বিক্রি করতে পেরেছি, টিম অনেক প্রফেশনাল এবং হেল্পফুল ছিল।</p><div class="testi-who"><div class="testi-avatar">ম</div><div><b>মাহমুদুল হাসান</b><span>বিক্রেতা</span></div></div></div>
+          <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="bn">ইঞ্জিন থেকে শুরু করে সব কিছু আগে থেকেই চেক করা ছিল, তাই কেনার সময় কোনো টেনশন ছিল না।</p><div class="testi-who"><div class="testi-avatar">ত</div><div><b>তানভীর আহমেদ</b><span>যাচাইকৃত ক্রেতা</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tm-section" id="contact" style="background:var(--bg-alt)">
+      <div class="tm-wrap">
+        <div class="section-head reveal">
+          <div class="kicker bn">যোগাযোগ করুন</div><h2>চলুন, আপনার পছন্দের বাইকটি খুঁজে নিই।</h2>
+          <p class="bn">নিচের ফর্মটি পূরণ করুন অথবা সরাসরি কল করুন, আমাদের টিম দ্রুত যোগাযোগ করবে।</p>
+        </div>
+        <div class="contact-grid reveal">
+          <div class="contact-info">
+            <h3>শোরুমের তথ্য</h3>
+            <div class="info-row"><div class="ico">☎</div><div><b>আমাদের কল করুন</b><span>01308-224400</span></div></div>
+            <div class="info-row"><div class="ico">@</div><div><b>ইনস্টাগ্রাম</b><span>torque_4400</span></div></div>
+            <div class="info-row"><div class="ico">f</div><div><b>ফেসবুক</b><span class="bn">৩৭৬K ফলোয়ার্স • পাবলিক গ্রুপ ৬৪৩ সদস্য</span></div></div>
+            <div class="info-row" style="border-bottom:none"><div class="ico">⏱</div><div><b>প্রতিদিন খোলা</b><span class="bn">সকাল ১০টা – রাত ৯টা</span></div></div>
+          </div>
+          <form class="tm-form" id="contactForm">
+            <div class="form-row">
+              <div class="field"><label for="name">নাম / নাম</label><input type="text" id="name" name="name" placeholder="আপনার নাম"></div>
+              <div class="field"><label for="phone">ফোন নাম্বার</label><input type="tel" id="phone" name="phone" placeholder="০১XXXXXXXXX"></div>
+            </div>
+            <div class="form-row"><div class="field full"><label for="interest">আপনি কী করতে চান?</label>
+              <select id="interest" name="interest"><option value="buy">কিনুন — বাইক কিনতে চাই</option><option value="sell">বিক্রি করুন — বাইক বিক্রি করতে চাই</option><option value="exchange">এক্সচেঞ্জ — বাইক এক্সচেঞ্জ করতে চাই</option></select>
+            </div></div>
+            <div class="form-row"><div class="field full"><label for="message">মেসেজ</label><textarea id="message" name="message" placeholder="বাইকের মডেল বা বিস্তারিত লিখুন..."></textarea></div></div>
+            <button type="submit" class="submit-btn">মেসেজ পাঠান</button>
+            <div id="formMsg"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="tm-footer">
+    <div class="tm-wrap">
+      <div class="foot-grid">
+        <div><a href="#top" class="logo-mark"><span class="logo-torque">টর্ক</span><span class="logo-moto">মোটো</span></a>
+          <p class="bn">বাংলাদেশের সেরা প্রিমিয়াম ইউজড বাইকের শোরুম। বিশ্বস্ততার সাথে কেনা, বিক্রি ও এক্সচেঞ্জ সেবা দিয়ে আসছি।</p>
+          <div class="foot-social">
+            <a href="https://www.facebook.com/profile.php?id=61587078313557" aria-label="ফেসবুক">f</a>
+            <a href="https://www.instagram.com/torque_4400" aria-label="ইনস্টাগ্রাম">ig</a>
+            <a href="tel:01308224400" aria-label="ফোন করুন">☎</a>
+          </div>
+        </div>
+        <div class="foot-col"><h4>দ্রুত লিংক</h4><ul><li><a href="#services">সার্ভিস</a></li><li><a href="#about">আমাদের সম্পর্কে</a></li><li><a href="#testimonials">রিভিউ</a></li><li><a href="#contact">যোগাযোগ</a></li></ul></div>
+        <div class="foot-col"><h4>সেবাসমূহ</h4><ul><li>বাইক কিনুন</li><li>বাইক বিক্রি করুন</li><li>বাইক এক্সচেঞ্জ করুন</li><li>বিনামূল্যে মূল্যায়ন</li></ul></div>
+        <div class="foot-col"><h4>যোগাযোগ</h4><ul><li>01308-224400</li><li>@torque_4400</li><li class="bn">প্রতিদিন সকাল ১০টা – রাত ৯টা</li></ul></div>
+      </div>
+      <div class="foot-bottom"><span>© 2026 টর্ক Moto। সর্বস্বত্ব সংরক্ষিত।</span><span class="bn">বাংলাদেশের সেরা প্রিমিয়াম ইউজড বাইকের শোরুম</span></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const root = document.querySelector('.tm-root');
+  const burger = document.getElementById('burger');
+  const navLinks = document.querySelector('.tm-nav-links');
+  const navInner = document.querySelector('.tm-nav-inner');
+
+  burger.addEventListener('click', () => {
+    const open = !navLinks.classList.contains('open');
+    navLinks.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+  });
+
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  window.addEventListener('scroll', () => {
+    navInner.classList.toggle('shrink', window.scrollY > 20);
+  }, {passive:true});
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(el => obs.observe(el));
+
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = Number(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      let start = null;
+      function step(ts){
+        if(!start) start = ts;
+        const p = Math.min((ts-start)/1400,1);
+        const eased = 1-Math.pow(1-p,3);
+        el.textContent = Math.round(eased*target) + suffix;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      statObs.unobserve(el);
+    });
+  }, {threshold:.3});
+  document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const msg = document.getElementById('formMsg');
+    if(!name || !/^01[0-9]{9}$/.test(phone)){
+      msg.classনাম = 'form-msg err';
+      msg.textContent = 'অনুগ্রহ করে সঠিক নাম ও ১১ ডিজিটের ফোন নম্বর দিন (উদাহরণ: ০১৮১২৩৪৫৬৭৮)।';
+      return;
+    }
+    msg.classনাম = 'form-msg ok';
+    msg.textContent = 'ধন্যবাদ! আপনার মেসেজ পাঠানো হয়েছে, শীঘ্রই আমাদের টিম যোগাযোগ করবে।';
+    this.reset();
+  });
+})();
+</script>
+</body>
+</html>
