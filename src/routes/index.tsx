@@ -514,7 +514,13 @@ function Index() {
                     <span>01308-224400</span>
                   </div>
                 </div>
-                <div className="info-row">
+                <a
+                  href="https://www.instagram.com/torque_4400"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="info-row social-link"
+                  aria-label="ইনস্টাগ্রামে দেখুন"
+                >
                   <div className="ico">
                     <Icon name="instagram" />
                   </div>
@@ -522,8 +528,14 @@ function Index() {
                     <b>ইনস্টাগ্রাম</b>
                     <span>torque_4400</span>
                   </div>
-                </div>
-                <div className="info-row">
+                </a>
+                <a
+                  href="https://www.facebook.com/p/Torque-Moto-%E0%A6%9F%E0%A6%B0%E0%A7%8D%E0%A6%95-%E0%A6%AE%E0%A6%9F%E0%A7%8B-61587078313557/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="info-row social-link"
+                  aria-label="ফেসবুক পেজ দেখুন"
+                >
                   <div className="ico">
                     <Icon name="facebook" />
                   </div>
@@ -531,7 +543,7 @@ function Index() {
                     <b>ফেসবুক</b>
                     <span className="bn">৩৭৬K ফলোয়ার্স • পাবলিক গ্রুপ ৬৪৩ সদস্য</span>
                   </div>
-                </div>
+                </a>
                 <div className="info-row">
                   <div className="ico">
                     <Icon name="pin" />
@@ -578,8 +590,10 @@ function Index() {
               </p>
               <div className="foot-social">
                 <a
-                  href="https://www.facebook.com/profile.php?id=61587078313557"
+                  href="https://www.facebook.com/p/Torque-Moto-%E0%A6%9F%E0%A6%B0%E0%A7%8D%E0%A6%95-%E0%A6%AE%E0%A6%9F%E0%A7%8B-61587078313557/"
                   aria-label="ফেসবুক"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Icon name="facebook" />
                 </a>
