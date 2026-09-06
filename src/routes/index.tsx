@@ -506,28 +506,36 @@ function Index() {
               <div className="contact-info">
                 <h3>শোরুমের তথ্য</h3>
                 <div className="info-row">
-                  <div className="ico">☎</div>
+                  <div className="ico">
+                    <Icon name="phone" />
+                  </div>
                   <div>
                     <b>আমাদের কল করুন</b>
                     <span>01308-224400</span>
                   </div>
                 </div>
                 <div className="info-row">
-                  <div className="ico">@</div>
+                  <div className="ico">
+                    <Icon name="instagram" />
+                  </div>
                   <div>
                     <b>ইনস্টাগ্রাম</b>
                     <span>torque_4400</span>
                   </div>
                 </div>
                 <div className="info-row">
-                  <div className="ico">f</div>
+                  <div className="ico">
+                    <Icon name="facebook" />
+                  </div>
                   <div>
                     <b>ফেসবুক</b>
                     <span className="bn">৩৭৬K ফলোয়ার্স • পাবলিক গ্রুপ ৬৪৩ সদস্য</span>
                   </div>
                 </div>
                 <div className="info-row">
-                  <div className="ico">📍</div>
+                  <div className="ico">
+                    <Icon name="pin" />
+                  </div>
                   <div>
                     <b>ঠিকানা</b>
                     <a
@@ -541,7 +549,9 @@ function Index() {
                   </div>
                 </div>
                 <div className="info-row last">
-                  <div className="ico">⏱</div>
+                  <div className="ico">
+                    <Icon name="clock" />
+                  </div>
                   <div>
                     <b>প্রতিদিন খোলা</b>
                     <span className="bn">সকাল ১০টা – রাত ৯টা</span>
