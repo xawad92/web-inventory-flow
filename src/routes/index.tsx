@@ -325,6 +325,9 @@ function Index() {
 
       <main>
         <header className="tm-hero" id="top">
+          <div className="hero-bg" aria-hidden="true">
+            <img src={heroBike} alt="" width={1920} height={1088} loading="eager" />
+          </div>
           <div className="hero-inner">
             <div className="hero-eyebrow bn">বাংলাদেশের সেরা প্রিমিয়াম ইউজড বাইকের শোরুম</div>
             <h1>
@@ -503,28 +506,36 @@ function Index() {
               <div className="contact-info">
                 <h3>শোরুমের তথ্য</h3>
                 <div className="info-row">
-                  <div className="ico">☎</div>
+                  <div className="ico">
+                    <Icon name="phone" />
+                  </div>
                   <div>
                     <b>আমাদের কল করুন</b>
                     <span>01308-224400</span>
                   </div>
                 </div>
                 <div className="info-row">
-                  <div className="ico">@</div>
+                  <div className="ico">
+                    <Icon name="instagram" />
+                  </div>
                   <div>
                     <b>ইনস্টাগ্রাম</b>
                     <span>torque_4400</span>
                   </div>
                 </div>
                 <div className="info-row">
-                  <div className="ico">f</div>
+                  <div className="ico">
+                    <Icon name="facebook" />
+                  </div>
                   <div>
                     <b>ফেসবুক</b>
                     <span className="bn">৩৭৬K ফলোয়ার্স • পাবলিক গ্রুপ ৬৪৩ সদস্য</span>
                   </div>
                 </div>
                 <div className="info-row">
-                  <div className="ico">📍</div>
+                  <div className="ico">
+                    <Icon name="pin" />
+                  </div>
                   <div>
                     <b>ঠিকানা</b>
                     <a
@@ -538,7 +549,9 @@ function Index() {
                   </div>
                 </div>
                 <div className="info-row last">
-                  <div className="ico">⏱</div>
+                  <div className="ico">
+                    <Icon name="clock" />
+                  </div>
                   <div>
                     <b>প্রতিদিন খোলা</b>
                     <span className="bn">সকাল ১০টা – রাত ৯টা</span>
@@ -568,13 +581,13 @@ function Index() {
                   href="https://www.facebook.com/profile.php?id=61587078313557"
                   aria-label="ফেসবুক"
                 >
-                  f
+                  <Icon name="facebook" />
                 </a>
                 <a href="https://www.instagram.com/torque_4400" aria-label="ইনস্টাগ্রাম">
-                  ig
+                  <Icon name="instagram" />
                 </a>
                 <a href="tel:01308224400" aria-label="ফোন করুন">
-                  ☎
+                  <Icon name="phone" />
                 </a>
               </div>
             </div>
@@ -619,6 +632,7 @@ function Index() {
           </div>
         </div>
       </footer>
+      <BackToTop />
     </div>
   );
 }
