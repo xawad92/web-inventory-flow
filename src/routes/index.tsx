@@ -325,6 +325,9 @@ function Index() {
 
       <main>
         <header className="tm-hero" id="top">
+          <div className="hero-bg" aria-hidden="true">
+            <img src={heroBike} alt="" width={1920} height={1088} loading="eager" />
+          </div>
           <div className="hero-inner">
             <div className="hero-eyebrow bn">বাংলাদেশের সেরা প্রিমিয়াম ইউজড বাইকের শোরুম</div>
             <h1>
